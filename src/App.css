@@ -1,0 +1,13 @@
+:root {
+    --header-height: 64px;
+}
+
+.app {
+    padding-top: var(--header-height);
+    min-height: 100vh;
+}
+
+.main-content {
+    padding: 32px;
+    margin: 0 auto;
+}

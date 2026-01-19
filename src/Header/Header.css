@@ -1,0 +1,31 @@
+:root {
+    --header-height: 64px;
+}
+
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    background: #000000;
+    z-index: 1000;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.704);
+}
+
+.app-header h1 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1;
+}   
