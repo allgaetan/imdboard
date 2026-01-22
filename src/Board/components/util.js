@@ -17,7 +17,7 @@ export const getAverageRating = (data) => {
 }
 
 export const getLongestStreak = (data) => {
-    return 0
+    return "Streak stats not implemented yet"
 }
 
 export const getRatingDistribution = (data) => {

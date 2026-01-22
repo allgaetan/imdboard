@@ -1,13 +1,13 @@
-:root {
-    --header-height: 64px;
-}
+@import "./variables.css";
 
 .app {
     padding-top: var(--header-height);
     min-height: 100vh;
+    background: linear-gradient(180deg, var(--bg), var(--surface));
 }
 
 .main-content {
-    padding: 32px;
+    padding: var(--space-lg);
     margin: 0 auto;
+    color: var(--text);
 }

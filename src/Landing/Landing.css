@@ -1,0 +1,52 @@
+@import "../variables.css";
+
+.landing {
+    background-color: var(--muted-surface);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin: var(--space-sm);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.drop-zone {
+    border: 2px dashed rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+    background-color: var(--muted-surface);
+    color: var(--muted-text);
+    gap: var(--space-md);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+}
+
+.drop-zone:hover {
+    background: rgba(255,255,255,0.02);
+    border-color: rgba(30,144,255,0.16);
+    transform: translateY(0px);
+}
+
+.drop-zone:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(30,144,255,0.08);
+}
+
+.drop-zone p {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 420px) {
+    .drop-zone {
+        width: 88%;
+        height: 140px;
+        padding: var(--space-md);
+    }
+}
