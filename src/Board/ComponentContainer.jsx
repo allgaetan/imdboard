@@ -7,7 +7,7 @@ import GenresDistribution from './components/GenresDistribution.jsx'
 import LastWatched from './components/LastWatched.jsx'
 import { dataTimeFramer } from './dataTimeFramer.js'
 
-export default function ComponentContainer({ data, timeframe }) {
+export default function ComponentContainer({ data, metadata, timeframe }) {
     const framedData = dataTimeFramer(data, timeframe)
 
     return (
@@ -17,8 +17,8 @@ export default function ComponentContainer({ data, timeframe }) {
             <DirectorsDistribution data={framedData} />
             <DecadesDistribution data={framedData} />
             <RatingsDistribution data={framedData} />
-            <LastWatched data={framedData} />
-            <TopRatings data={framedData} />
+            <LastWatched data={framedData} metadata={metadata}/>
+            <TopRatings data={framedData} metadata={metadata}/>
         </div>
     )
 }

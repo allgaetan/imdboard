@@ -51,7 +51,7 @@ export default function DirectorsDistribution({ data }) {
                 <IconContext.Provider value={{ style: {fontSize: "30"} }}>
                     < GiDirectorChair />
                 </IconContext.Provider>
-                <h2>Top directors</h2>
+                <h2>Directors watched</h2>
             </div>
             <div className="bar-chart">
                 <BarChart 
@@ -64,7 +64,7 @@ export default function DirectorsDistribution({ data }) {
                         dataKey="count" 
                         fill="var(--accent)" 
                         radius={[0, 5, 5, 0]}
-                        activeBar={{ fill: "var(--muted-surface)" }}
+                        activeBar={{ fill: "var(--accent-2)" }}
                     />
                     <XAxis type="count" hide={true}/>
                     <YAxis dataKey="director" type="category" axisLine={false} tickLine={false} width={100}/>

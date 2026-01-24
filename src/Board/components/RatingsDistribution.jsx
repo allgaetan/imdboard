@@ -63,7 +63,7 @@ export default function RatingsDistribution({ data }) {
                         dataKey="count" 
                         fill="var(--accent)" 
                         radius={[5, 5, 0, 0]}
-                        activeBar={{ fill: "var(--muted-surface)" }}
+                        activeBar={{ fill: "var(--accent-2)" }}
                     />
                     <XAxis dataKey="rating" axisLine={false} tickLine={false} />
                     <YAxis dataKey="count" hide={true} />

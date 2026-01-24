@@ -50,7 +50,7 @@ export default function DecadesDistribution({ data }) {
                 <IconContext.Provider value={{ style: {fontSize: "35"} }}>
                     <CiCalendarDate />
                 </IconContext.Provider>
-                <h2>Decades distribution</h2>
+                <h2>Decades watched</h2>
             </div>
             <div className="bar-chart">
                 <BarChart 
@@ -63,7 +63,7 @@ export default function DecadesDistribution({ data }) {
                         dataKey="count" 
                         fill="var(--accent)" 
                         radius={[0, 5, 5, 0]}
-                        activeBar={{ fill: "var(--muted-surface)" }}
+                        activeBar={{ fill: "var(--accent-2)" }}
                     />
                     <XAxis type="count" hide={true}/>
                     <YAxis dataKey="decade" type="category" axisLine={false} tickLine={false} />

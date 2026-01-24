@@ -112,3 +112,31 @@ export const getDecadeDistribution = (data) => {
     const reversedArray = Object.entries(distribution).reverse()
     return reversedArray
 }
+
+export const getLastWatched = (data, size) => {
+    if (size >= data.length) { return data }
+    return data.slice(0, size)
+}
+
+export const dateFormatter = (dateString) => {
+    const dateArray = dateString.split("-")
+    const year = dateArray[0]
+    const month = dateArray[1]
+    const date = new Date(dateString);
+    date.setMonth(month - 1);
+    const monthName = date.toLocaleString('en-US', {
+        month: 'long',
+    });
+    const day = dateArray[2]
+    return `${monthName} ${day} ${year}`
+}
+
+export const sortFilmsByRatings = (data) => {
+    return [...data].sort((a, b) => Number(b.rating) - Number(a.rating))
+}
+
+export const getHighestRatedFilms = (data, size) => {
+    const sorted = sortFilmsByRatings(data)
+    if (size >= data.length) { return sorted }
+    return sorted.slice(0, size)
+}
