@@ -1,3 +1,6 @@
+import { GrOverview } from "react-icons/gr";
+import { IconContext } from "react-icons";
+import { IoStar } from "react-icons/io5";
 import { getAverageRating, 
     getNumberOfFilmsWatched,
     getTotalTimeWatchedInHours,
@@ -11,11 +14,33 @@ export default function Overview({ data }) {
 
     return (
         <div className="card overview">
-            <h2>Overview</h2>
-            <p>Number of films watched: {numberOfFilmsWatched}</p>
-            <p>Total time watched: {totalTimeWatched} hours</p>
-            <p>Average rating: {averageRating}</p>
-            <p>Longest streak: {longestStreak} days</p>
+            <div className="card-header">
+                <IconContext.Provider value={{ style: {fontSize: "30"} }}>
+                    <GrOverview />
+                </IconContext.Provider>
+                <h2>Overview</h2>
+            </div>
+            <div className="overview-stats">
+                <div className="nb-films">
+                    <h1>{numberOfFilmsWatched}</h1>
+                    <p>Number of films watched</p>
+                </div>
+                <div className="time-watched">
+                    <h1>
+                        {totalTimeWatched}
+                        <p>hours</p>
+                    </h1>
+                    <p>Total watch time</p>
+                </div>
+                <div className="average">
+                    <h1>
+                        {averageRating}
+                        <IoStar color="gold"/>
+                    </h1>
+                    <p>Average rating</p>
+                </div>
+            </div>
+            
         </div>
     )
 }

@@ -4,7 +4,7 @@
     --space-md: 16px;
     --space-lg: 32px;
 
-    --bg: #0b0f14;
+    --bg: #040506;  
     --surface: #0f1720;
     --muted-surface: #111418;
     --text: #e6eef6;
@@ -56,10 +56,4 @@ input, textarea, select {
     border: 1px solid rgba(255,255,255,0.06);
     padding: var(--space-sm);
     border-radius: 6px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-md);
 }

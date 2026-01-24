@@ -34,5 +34,81 @@ export const getRatingDistribution = (data) => {
     return distribution
 }
 
+export const getGenreDistribution = (data, keepTopN) => {
+    const distribution = {}
+    data.forEach((film) => {
+        const genres = film.genres;
+        const genresArray = genres.split(", ");
+        genresArray.forEach((genre) => {
+            if (genre && distribution[genre] === undefined) {
+                distribution[genre] = 0
+            }
+        })   
+    })
+    data.forEach((film) => {
+        const genres = film.genres;
+        const genresArray = genres.split(", ")  
+        genresArray.forEach((genre) => {
+            if (genre) {
+                distribution[genre] += 1 
+            }
+        }) 
+    })
+    let sorted = Object.fromEntries(
+        Object.entries(distribution).sort(([, a], [, b]) => b - a)
+    )
+    let sliced = Object.fromEntries(
+        Object.entries(sorted).slice(0, keepTopN)
+    )
+    return sliced
+}
 
+export const getDirectorDistribution = (data, keepTopN) => {
+    const distribution = {}
+    data.forEach((film) => {
+        const directors = film.directors;
+        const directorsArray = directors.split(",");
+        directorsArray.forEach((director) => {
+            if (director && distribution[director] === undefined) {
+                distribution[director] = 0
+            }
+        })   
+    })
+    data.forEach((film) => {
+        const directors = film.directors;
+        const directorsArray = directors.split(",");
+        directorsArray.forEach((director) => {
+            if (director) {
+                distribution[director] += 1
+            }
+        })  
+    })
+    let sorted = Object.fromEntries(
+        Object.entries(distribution).sort(([, a], [, b]) => b - a)
+    );
 
+    let sliced = Object.fromEntries(
+        Object.entries(sorted).slice(0, keepTopN)
+    )
+    return sliced
+}
+
+export const getDecadeDistribution = (data) => {
+    const distribution = {}
+    data.forEach((film) => {
+        const year = film.year
+        const decade = Math.trunc(year/10) * 10
+        if (decade && distribution[decade] === undefined) {
+            distribution[decade] = 0
+        }
+    })
+    data.forEach((film) => {
+        const year = film.year
+        const decade = Math.trunc(year/10) * 10
+        if (decade) {
+            distribution[decade] += 1
+        }
+    })
+    const reversedArray = Object.entries(distribution).reverse()
+    return reversedArray
+}

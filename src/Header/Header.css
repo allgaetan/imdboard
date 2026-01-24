@@ -5,65 +5,62 @@
     top: 0;
     left: 0;
     right: 0;
-    height: var(--header-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    padding: 0 var(--space-md);
+    height: fit-content;   
     background: var(--surface);
     color: var(--text);
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-}
-
-.header-center {
-    position: absolute;
-    align-self: center;
+    text-align: center;
+    height: var(--header-height);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
 }
+
 .header-left {
-    position: absolute;
+    position: relative;
     left: var(--space-md);
     display: flex;
     align-items: center;
-    background-color: var(--bg);
-    padding: 10px;
     border-radius: 4px;
     color: var(--text);
+    transition: 150ms;
+    gap: var(--space-sm);
 }
 .header-left:hover {
     cursor: pointer;
     color: var(--muted-text);
-    transition: 150ms;
 }
 .header-left h1 {
     font-size: 1.05rem;
     margin: 0;
 }
 
-.header-tabs {
+.header-center {
     display: flex;
     gap: var(--space-sm);
     align-items: center;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
 .tab {
-    background: none;
-    border: none;
     color: var(--text);
     padding: var(--space-sm) var(--space-md);
-    font-size: 1rem;
     cursor: pointer;
     line-height: 1;
     border-bottom: 2px solid transparent;
-    transition: border-color 150ms ease, color 150ms ease;
+    transition: 150ms;
     border-radius: 2px;
 }
 
 .tab:hover {
-    border-bottom-color: rgba(255,255,255,0.08);
+    color: var(--muted-text);
+    border-bottom-color: var(--muted-text);
 }
 
 .tab:focus {
@@ -76,3 +73,9 @@
     font-weight: 600;
     color: var(--text);
 }
+
+a { color: var(--text); transition: 150ms; }
+a:visited { text-decoration: none; color: var(--text); }
+a:hover { text-decoration: none; color: var(--muted-text); }
+a:focus { text-decoration: none; color: var(--text); }
+a:hover, a:active { text-decoration: none; color: var(--muted-text); }

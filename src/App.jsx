@@ -21,14 +21,14 @@ export default function App() {
     }
 
     return (
-        <div className="app">
-            <Header tab={tab} setTab={setTab} landing={!data}/>
+        <div className="app noise">
             {!data ? (
                 <main className="main-content">
                     <Landing onDataLoaded={handleDataLoaded} />
                 </main>
             ) : (
                 <main className="main-content">
+                    <Header tab={tab} setTab={setTab} landing={!data} setData={setData}/>
                     {tab === 'board' ? (
                         <Board data={data} />
                     ) : (
