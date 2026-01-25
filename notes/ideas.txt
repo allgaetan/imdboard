@@ -1,48 +1,18 @@
-board:
-Multiple components like cards in one viewing
+Soon:
+- correct tooltip bug on bar charts
+- landing page (add instructions)
+- space between directors name in top ratings
+- longest streak stat for the overview
 
-- settings time period:
-    - last 7 Days
-    - last 30 Days
-    - last 90 Days
-    - last 180 Days
-    - last 365 Days
-    - all time
-- overview:
-    - number of films watched
-    - number of hours 
-    - longest streak
-- ratings distribution:
-    - bar chart with a line indicating average rating
-- recently watched:
-    - 5 in line, text below each with Title (year), director, rating, date of rating
-    - setting: number displayed (show 3,5,10)
-- genres distribution:
-    - bar chart of nb of films watched per genre
-- director distribution:
-    - bar chart of nb of films watched per director
-- decade distribution:
-    - bar chart of nb of films watched per decade
-- your top ratings:
-    - highest rated film
-    - highest rated director averaged over the time period
-    - highest rated genre averaged over the time period
-    - expand for lists of all film, directors and genres sorted by rating 
-
-reports (work in progress):
-Each section below the other, usual scroll down page kinda thing
-
-- settings time period:
-    - last week (week from monday to sunday)
-    - last month (1st to 28th/29th/30th/31st of the month depending on the month)
-    - last year (1st january to 31st december)
-- overview:
-    - number of films watched
-    - number of hours 
-    - longest streak
-    - number of Directors
-    - number of countries
-    - all stats compared with the previous period of time (show percentage of evolution with red/green arrows for up or down)
-- bar chart of nb of films seen per day (for week and month) or per month (for year) with two bars (the other bar is the stat
-    from the previous time period) 
-- top films:
+Future features:
+- custom pages for each component:
+    - overview: none
+    - ratings distribution: click on each bar to see every film of the given rating (grid in a popup?)
+    - genres/directors/decade: click to go on a page with all (more than 10)
+        - left side of the page: full bar chart
+        - right side of the page: when a bar is clicked, all films of the corresponding bars are displayed in a grid
+    - recently watched: click to go on a page with all watched movies in a grid
+    - top ratings: add a "see more" button for each tops, popup with the full top
+- letterboxd handling
+- weekly, monthly, yearly reports
+- when clicking on a film, popup with details of the film

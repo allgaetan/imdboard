@@ -2,7 +2,7 @@ import "./Landing.css"
 import { SiThemoviedatabase } from "react-icons/si";
 import { IconContext } from "react-icons";
 
-export default function Loading({ onDataLoaded }) {
+export default function Loading() {
     return (
         <div className="loading">
             <div>

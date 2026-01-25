@@ -2,7 +2,7 @@ import { getDirectorDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { GiDirectorChair } from "react-icons/gi";
 import { IconContext } from "react-icons";
-
+import { useState } from "react";
 
 export default function DirectorsDistribution({ data }) {
     const dist = getDirectorDistribution(data)
@@ -48,6 +48,14 @@ export default function DirectorsDistribution({ data }) {
         )
     }
 
+    const [displayTooltip, setDisplayTooltip] = useState(false)
+    const hideTooltip = () => {
+        setDisplayTooltip(false)
+    }
+    const showTooltip = () => {
+        setDisplayTooltip(true)
+    }
+
     return (
         <div className="card directors-distribution">
             <div className="card-header">
@@ -62,6 +70,8 @@ export default function DirectorsDistribution({ data }) {
                     responsive
                     height={chartHeight}
                     data={Object.entries(sliced).map(([director, count]) => ({ director, count }))}
+                    onMouseEnter={showTooltip}
+                    onMouseLeave={hideTooltip}
                 >
                     <Bar 
                         dataKey="count" 
@@ -74,6 +84,7 @@ export default function DirectorsDistribution({ data }) {
                     <Tooltip 
                         cursor={{fill: "transparent"}}
                         content={<CustomTooltip />}
+                        active={displayTooltip}
                     />
                 </BarChart>
             </div>

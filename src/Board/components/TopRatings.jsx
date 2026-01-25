@@ -11,6 +11,8 @@ import { CgComedyCentral } from "react-icons/cg";
 
 export default function TopRatings({ data, metadata }) {
     const apiKey = import.meta.env.VITE_API_KEY
+    const TOP_FILM_DISPLAY = 2
+    const TOP_DIRECTOR_DISPLAY = 2
     /**
      * Top films
      */
@@ -35,11 +37,17 @@ export default function TopRatings({ data, metadata }) {
     )
     const getTopDirectorsPicture = async () => {
         const pairs = []
+        var iter = 0
         for (const director of Object.keys(dirSliced)) {
+            iter += 1
             const name = director
-            const directorPic = await fetchPersonPicture(name, apiKey)
-            if (directorPic) pairs.push({ name, directorPic })
-                else pairs.push({ name })
+            if (iter > TOP_DIRECTOR_DISPLAY) {
+                pairs.push({ name })
+            } else {
+                const directorPic = await fetchPersonPicture(name, apiKey)
+                if (directorPic) pairs.push({ name, directorPic })
+                    else pairs.push({ name })
+            }
         }
         setDirectorsPics(pairs)
     }
@@ -78,7 +86,7 @@ export default function TopRatings({ data, metadata }) {
                 <h2>Top ratings</h2>
             </div>
 
-            <div className="card-header">
+            <div className="top-ratings-header">
                 <IconContext.Provider value={{ style: {fontSize: "20"} }}>
                     <FaFilm />
                 </IconContext.Provider>
@@ -86,10 +94,10 @@ export default function TopRatings({ data, metadata }) {
             </div>
             {!filmMeta.length ? (
                 <p>No items.</p>
-            ) : (
-                <div className="top-films">
-                    {filmMeta.map(({ film, meta }) => (
-                        <div key={film.const || film.title}>
+            ) : (<>
+                <div className="top-films" style={{ display: "grid", gridTemplateColumns: `repeat(${TOP_FILM_DISPLAY}, 1fr)` }}>
+                    {filmMeta.map(({ film, meta }, idx) => (<>
+                        {(idx <= TOP_FILM_DISPLAY - 1) ? (<div>
                             {meta?.posterPath ? (
                                 <img 
                                     src={meta.posterPath}
@@ -99,7 +107,7 @@ export default function TopRatings({ data, metadata }) {
                                 <div>No poster</div>
                             )}
                             <div style={{ fontWeight: "bold" }}>
-                                {film.title}
+                                {idx + 1}. {film.title}
                             </div>
                             <div style={{ color: "var(--muted-text)" }}>
                                 {film.year}
@@ -108,12 +116,30 @@ export default function TopRatings({ data, metadata }) {
                                 <p style={{ fontWeight: "bold", margin: "0px" }}>{film.rating}</p>
                                 <IoStar color="gold"/>
                             </div>
+                        </div>) : (<></>)}
+                    </>))}
+                </div>
+                <div className="lines-display">
+                    {filmMeta.map(({ film }, idx) => (
+                        <div>
+                            {(idx > TOP_FILM_DISPLAY - 1) ? (
+                                <div className="line" style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div>
+                                        <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{idx + 1}. {film.title}</p>
+                                        <div style={{ color: "var(--muted-text)", textAlign: "left" }}>{film.directors} ({film.year})</div>
+                                    </div>   
+                                    <div style={{ display: "flex", gap: "var(--space-sm)", alignItems: "center", justifyContent: "center" }}>
+                                        <p style={{ fontWeight: "bold", margin: "0px" }}>{film.rating}</p>
+                                        <IoStar color="gold" />
+                                    </div>
+                                </div>
+                            ) : (<></>)}
                         </div>
                     ))}
                 </div>
-            )}
+            </>)}
 
-            <div className="card-header">
+            <div className="top-ratings-header">
                 <IconContext.Provider value={{ style: {fontSize: "30"} }}>
                     <GiDirectorChair />
                 </IconContext.Provider>
@@ -121,10 +147,10 @@ export default function TopRatings({ data, metadata }) {
             </div>
             {!directorPics.length ? (
                 <p>No items.</p>
-            ) : (
-                <div className="top-directors">
-                    {directorPics.map(({ name, directorPic }) => (
-                        <div key={name}>
+            ) : (<>
+                <div className="top-directors" style={{ display: "grid", gridTemplateColumns: `repeat(${TOP_DIRECTOR_DISPLAY}, 1fr)` }}>
+                    {directorPics.map(({ name, directorPic }, idx) => (<>
+                        {(idx <= TOP_DIRECTOR_DISPLAY - 1) ? (<div>
                             {directorPic?.imagePath ? (
                                 <img 
                                     src={directorPic.imagePath}
@@ -136,19 +162,37 @@ export default function TopRatings({ data, metadata }) {
                                 </IconContext.Provider>
                             )}
                             <div style={{ fontWeight: "bold" }}>
-                                {name}
+                                {idx + 1}. {name}
                             </div>
                             <div style={{ color: "var(--muted-text)" }}>{dirDist.count[name]} film(s) watched</div>
                             <div style={{ display: "flex", gap: "var(--space-sm)", alignItems: "center", justifyContent: "center" }}>
                                 <p style={{ fontWeight: "bold", margin: "0px" }}>{dirDist.rating[name]}</p>
                                 <IoStar color="gold" />
                             </div>
+                        </div>) : (<></>)}
+                    </>))}
+                </div>
+                <div className="lines-display">
+                    {directorPics.map(({ name }, idx) => (
+                        <div>
+                            {(idx > TOP_DIRECTOR_DISPLAY - 1) ? (
+                                <div className="line" style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div>
+                                        <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{idx + 1}. {name}</p>
+                                        <div style={{ color: "var(--muted-text)", textAlign: "left" }}>{dirDist.count[name]} film(s) watched</div>
+                                    </div> 
+                                    <div style={{ display: "flex", gap: "var(--space-sm)", alignItems: "center", justifyContent: "center" }}>
+                                        <p style={{ fontWeight: "bold", margin: "0px" }}>{dirDist.rating[name]}</p>
+                                        <IoStar color="gold" />
+                                    </div>
+                                </div>
+                            ) : (<></>)}
                         </div>
                     ))}
                 </div>
-            )}
+            </>)}
 
-            <div className="card-header">
+            <div className="top-ratings-header">
                 <IconContext.Provider value={{ style: {fontSize: "30"} }}>
                     <MdOutlineTheaterComedy />
                 </IconContext.Provider>
@@ -157,11 +201,11 @@ export default function TopRatings({ data, metadata }) {
             {!genres.length ? (
                 <p>No items.</p>
             ) : (
-                <div className="top-genres">
-                    {genres.map(({ name, rating }) => (<>
-                        <div className="genre-line" key={name} style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="lines-display">
+                    {genres.map(({ name, rating }, idx) => (<>
+                        <div className="line" key={name} style={{ display: "flex", justifyContent: "space-between" }}>
                             <div>
-                                <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{name}</p>
+                                <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{idx + 1}. {name}</p>
                                 <div style={{ color: "var(--muted-text)" }}>{genresDist.count[name]} film(s) watched</div>
                             </div>   
                             <div style={{ display: "flex", gap: "var(--space-sm)", alignItems: "center", justifyContent: "center" }}>

@@ -2,6 +2,7 @@ import { getDecadeDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { CiCalendarDate } from "react-icons/ci";
 import { IconContext } from "react-icons";
+import { useState } from "react";
 
 export default function DecadesDistribution({ data }) {
     const distribution = getDecadeDistribution(data)
@@ -44,6 +45,14 @@ export default function DecadesDistribution({ data }) {
         )
     }
 
+    const [displayTooltip, setDisplayTooltip] = useState(false)
+    const hideTooltip = () => {
+        setDisplayTooltip(false)
+    }
+    const showTooltip = () => {
+        setDisplayTooltip(true)
+    }
+    
     return (
         <div className="card decades-distribution">
             <div className="card-header">
@@ -58,6 +67,8 @@ export default function DecadesDistribution({ data }) {
                     responsive
                     height={chartHeight}
                     data={distribution.map(([decade, count]) => ({ decade, count }))}
+                    onMouseEnter={showTooltip}
+                    onMouseLeave={hideTooltip}
                 >
                     <Bar 
                         dataKey="count" 
@@ -70,6 +81,7 @@ export default function DecadesDistribution({ data }) {
                     <Tooltip 
                         cursor={{fill: "transparent"}}
                         content={<CustomTooltip />}
+                        active={displayTooltip}
                     />
                 </BarChart>
             </div>

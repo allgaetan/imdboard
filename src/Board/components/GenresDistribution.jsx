@@ -2,6 +2,7 @@ import { getGenreDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { MdOutlineTheaterComedy } from "react-icons/md";
 import { IconContext } from "react-icons";
+import { useState } from "react";
 
 export default function GenresDistribution({ data }) {
     const dist = getGenreDistribution(data)
@@ -47,6 +48,14 @@ export default function GenresDistribution({ data }) {
         )
     }
 
+    const [displayTooltip, setDisplayTooltip] = useState(false)
+    const hideTooltip = () => {
+        setDisplayTooltip(false)
+    }
+    const showTooltip = () => {
+        setDisplayTooltip(true)
+    }
+
     return (
         <div className="card genres-distribution">
             <div className="card-header">
@@ -61,6 +70,8 @@ export default function GenresDistribution({ data }) {
                     responsive
                     height={chartHeight}
                     data={Object.entries(sliced).map(([genre, count]) => ({ genre, count }))}
+                    onMouseEnter={showTooltip}
+                    onMouseLeave={hideTooltip}
                 >
                     <Bar 
                         dataKey="count" 
@@ -73,6 +84,7 @@ export default function GenresDistribution({ data }) {
                     <Tooltip 
                         cursor={{fill: "transparent"}}
                         content={<CustomTooltip />}
+                        active={displayTooltip}
                     />
                 </BarChart>
             </div>

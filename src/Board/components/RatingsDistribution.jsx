@@ -3,6 +3,7 @@ import { IoStatsChart } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { IoStar } from "react-icons/io5";
 import { getRatingDistribution } from "./util";
+import { useState } from "react";
 
 export default function RatingsDistribution({ data }) {
     const distribution = getRatingDistribution(data)
@@ -44,6 +45,14 @@ export default function RatingsDistribution({ data }) {
         )
     }
 
+    const [displayTooltip, setDisplayTooltip] = useState(false)
+    const hideTooltip = () => {
+        setDisplayTooltip(false)
+    }
+    const showTooltip = () => {
+        setDisplayTooltip(true)
+    }
+
     return (
         <div className="card ratings-distribution">
             <div className="card-header">
@@ -58,6 +67,8 @@ export default function RatingsDistribution({ data }) {
                     width={450} 
                     height={200} 
                     data={Object.entries(distribution).map(([rating, count]) => ({ rating, count }))}
+                    onMouseLeave={hideTooltip}
+                    onMouseEnter={showTooltip}
                 >
                     <Bar 
                         dataKey="count" 
@@ -70,6 +81,7 @@ export default function RatingsDistribution({ data }) {
                     <Tooltip 
                         cursor={{fill: "transparent"}}
                         content={<CustomTooltip />}
+                        active={displayTooltip}
                     />
                 </BarChart>
             </div>

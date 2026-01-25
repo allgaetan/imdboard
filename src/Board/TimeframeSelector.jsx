@@ -16,7 +16,7 @@ export default function TimeframeSelector({ timeframe, onChange }) {
     return (
         <div className="dropdown">
             <button
-                className="dropdown-trigger"
+                className="dropdown-trigger card"
                 onClick={() => setOpen(!open)}
             >
                 {selected.label}
