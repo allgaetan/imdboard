@@ -7,7 +7,7 @@ export const getTotalTimeWatched = (data) => {
 }
 
 export const getTotalTimeWatchedInHours = (data) => {
-    return (getTotalTimeWatched(data) / 60).toFixed(1)
+    return (getTotalTimeWatched(data) / 60)
 }
 
 export const getAverageRating = (data) => {
@@ -34,43 +34,66 @@ export const getRatingDistribution = (data) => {
     return distribution
 }
 
-export const getGenreDistribution = (data, keepTopN) => {
+export const getGenreDistribution = (data) => {
     const distribution = {}
     data.forEach((film) => {
         const genres = film.genres;
         const genresArray = genres.split(", ");
         genresArray.forEach((genre) => {
             if (genre && distribution[genre] === undefined) {
-                distribution[genre] = 0
+                distribution[genre] =
+                    {
+                        "count": 0,
+                        "rating": 0
+                    }
             }
         })   
     })
     data.forEach((film) => {
         const genres = film.genres;
-        const genresArray = genres.split(", ")  
+        const genresArray = genres.split(", ");
         genresArray.forEach((genre) => {
             if (genre) {
-                distribution[genre] += 1 
+                distribution[genre].count += 1
+                distribution[genre].rating += parseInt(film.rating || 0, 10)
             }
-        }) 
+        })  
     })
-    let sorted = Object.fromEntries(
-        Object.entries(distribution).sort(([, a], [, b]) => b - a)
+    const countDist = {}
+    const ratingDist = {}
+    Object.entries(distribution).forEach((entry) => {
+        const genre = entry[0]
+        const count = entry[1].count
+        const rating = entry[1].rating
+        countDist[genre] = count
+        ratingDist[genre] = rating / count
+    })
+    
+    let sortedByCount = Object.fromEntries(
+        Object.entries(countDist).sort(([, a], [, b]) => b - a)
     )
-    let sliced = Object.fromEntries(
-        Object.entries(sorted).slice(0, keepTopN)
+    let sortedByRating = Object.fromEntries(
+        Object.entries(ratingDist).sort(([, a], [, b]) => b - a)
     )
-    return sliced
+
+    return {
+        "count": sortedByCount,
+        "rating": sortedByRating
+    }
 }
 
-export const getDirectorDistribution = (data, keepTopN) => {
+export const getDirectorDistribution = (data) => {
     const distribution = {}
     data.forEach((film) => {
         const directors = film.directors;
         const directorsArray = directors.split(",");
         directorsArray.forEach((director) => {
             if (director && distribution[director] === undefined) {
-                distribution[director] = 0
+                distribution[director] =
+                    {
+                        "count": 0,
+                        "rating": 0
+                    }
             }
         })   
     })
@@ -79,18 +102,32 @@ export const getDirectorDistribution = (data, keepTopN) => {
         const directorsArray = directors.split(",");
         directorsArray.forEach((director) => {
             if (director) {
-                distribution[director] += 1
+                distribution[director].count += 1
+                distribution[director].rating += parseInt(film.rating || 0, 10)
             }
         })  
     })
-    let sorted = Object.fromEntries(
-        Object.entries(distribution).sort(([, a], [, b]) => b - a)
-    );
-
-    let sliced = Object.fromEntries(
-        Object.entries(sorted).slice(0, keepTopN)
+    const countDist = {}
+    const ratingDist = {}
+    Object.entries(distribution).forEach((entry) => {
+        const director = entry[0]
+        const count = entry[1].count
+        const rating = entry[1].rating
+        countDist[director] = count
+        ratingDist[director] = rating / count
+    })
+    
+    let sortedByCount = Object.fromEntries(
+        Object.entries(countDist).sort(([, a], [, b]) => b - a)
     )
-    return sliced
+    let sortedByRating = Object.fromEntries(
+        Object.entries(ratingDist).sort(([, a], [, b]) => b - a)
+    )
+
+    return {
+        "count": sortedByCount,
+        "rating": sortedByRating
+    }
 }
 
 export const getDecadeDistribution = (data) => {

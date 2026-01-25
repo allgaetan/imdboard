@@ -137,6 +137,41 @@
     grid-row-end: 5;
     max-height: fit-content;
 }
+.top-films {
+    display: flex;
+    gap: var(--space-md);
+}
+.top-films div {
+    flex: 0 0 auto;
+    width: 120px;
+}
+.top-films img {
+    width: 120px;
+    border-radius: 8px;
+}
+.top-directors {
+    display: flex;
+    gap: var(--space-md);
+}
+.top-directors div {
+    flex: 0 0 auto;
+    width: 120px;
+}
+.top-directors img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.top-genres .genre-line {
+    padding-right: 5px;
+    padding-left: 5px;
+    border-top: solid 1px var(--muted-text);
+    transition: 0.1s;
+}
+.top-genres .genre-line:hover {
+    background-color: var(--muted-surface);
+}
 
 .last-watched {
     grid-column-start: 1;

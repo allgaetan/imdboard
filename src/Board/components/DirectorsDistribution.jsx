@@ -5,9 +5,12 @@ import { IconContext } from "react-icons";
 
 
 export default function DirectorsDistribution({ data }) {
-    const distribution = getDirectorDistribution(data, 10)
+    const dist = getDirectorDistribution(data)
+    const sliced = Object.fromEntries(
+        Object.entries(dist.count).slice(0, 10)
+    )
     const ROW_HEIGHT = 32
-    const chartHeight = Object.keys(distribution).length * ROW_HEIGHT
+    const chartHeight = Object.keys(sliced).length * ROW_HEIGHT
 
     const CustomTooltip = ({ active, payload, label }) => {
         if (!active || !payload || !payload.length) return null
@@ -58,7 +61,7 @@ export default function DirectorsDistribution({ data }) {
                     layout="vertical"
                     responsive
                     height={chartHeight}
-                    data={Object.entries(distribution).map(([director, count]) => ({ director, count }))}
+                    data={Object.entries(sliced).map(([director, count]) => ({ director, count }))}
                 >
                     <Bar 
                         dataKey="count" 

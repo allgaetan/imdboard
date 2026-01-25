@@ -18,7 +18,7 @@ export default function ComponentContainer({ data, metadata, timeframe }) {
             <DecadesDistribution data={framedData} />
             <RatingsDistribution data={framedData} />
             <LastWatched data={framedData} metadata={metadata}/>
-            <TopRatings data={framedData} metadata={metadata}/>
+            <TopRatings data={framedData} metadata={metadata} />
         </div>
     )
 }

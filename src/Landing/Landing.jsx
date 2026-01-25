@@ -6,7 +6,7 @@ export default function Landing({ onDataLoaded }) {
         <div className="landing">
             <div>
                 <h1>Upload your IMDb ratings</h1>
-                <DropZone onDataLoaded={onDataLoaded}/>
+                <DropZone onDataLoaded={onDataLoaded} />
             </div>
         </div>
     )

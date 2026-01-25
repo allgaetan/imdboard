@@ -27,7 +27,7 @@ export default function Overview({ data }) {
                 </div>
                 <div className="time-watched">
                     <h1>
-                        {totalTimeWatched}
+                        {totalTimeWatched.toFixed(1)}
                         <p>hours</p>
                     </h1>
                     <p>Total watch time</p>

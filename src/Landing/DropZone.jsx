@@ -1,4 +1,6 @@
 import { useRef } from "react"
+import { MdOutlineFileUpload } from "react-icons/md";
+import { IconContext } from "react-icons";
 
 export default function DropZone ({ onDataLoaded }) {
     const inputRef = useRef(null)
@@ -30,6 +32,9 @@ export default function DropZone ({ onDataLoaded }) {
             onDrop={handleDrop}
             onDrag={handleDragOver}
         >
+            <IconContext.Provider value={{ className: "upload-icon", style: { fontSize: "50px" } }}>
+                <MdOutlineFileUpload />
+            </IconContext.Provider>
             <p>Drag and drop your IMDB ratings file</p>
             <p>or click to upload (.csv only)</p>
             <input 

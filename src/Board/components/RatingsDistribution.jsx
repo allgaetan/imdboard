@@ -5,7 +5,7 @@ import { IoStar } from "react-icons/io5";
 import { getRatingDistribution } from "./util";
 
 export default function RatingsDistribution({ data }) {
-    const distribution = getRatingDistribution(data);
+    const distribution = getRatingDistribution(data)
 
     const CustomTooltip = ({ active, payload, label }) => {
         if (!active || !payload || !payload.length) return null

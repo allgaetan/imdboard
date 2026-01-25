@@ -12,7 +12,7 @@ export default function LastWatched({ data, metadata }) {
         const size = document.getElementById("size-selector").value
         setSize(size)
         getLastWatchedMetadata(metadata, size)
-    }
+    }   
 
     const getLastWatchedMetadata = (metadata, size) => {
         const films = getLastWatched(data, size);
@@ -26,8 +26,8 @@ export default function LastWatched({ data, metadata }) {
     }
 
     useEffect(() => {
-        getLastWatchedMetadata(metadata, size)
-    }, [metadata])
+        getLastWatchedMetadata(metadata, size, data)
+    }, [data, metadata])
 
     return (
         <div className="card last-watched">
@@ -36,7 +36,7 @@ export default function LastWatched({ data, metadata }) {
                     <IconContext.Provider value={{ style: {fontSize: "25"} }}>
                         <FaHistory />
                     </IconContext.Provider>
-                    <h2>Recently watched</h2>
+                    <h2>Recently rated</h2>
                 </div>
                 <div style={{ display: "flex", alignItems: "center"}}>
                     <p style={{ color: "var(--text)" }}>Show</p>
@@ -48,7 +48,7 @@ export default function LastWatched({ data, metadata }) {
                 </div>   
             </div>
             {!items.length ? (
-                <p>No recent items.</p>
+                <p>No items.</p>
             ) : (
                 <div className="watch-history">
                     {items.map(({ film, meta }) => (
@@ -63,10 +63,10 @@ export default function LastWatched({ data, metadata }) {
                                 <div>No poster</div>
                             )}
                             <div style={{ fontWeight: "bold" }}>
-                                {meta?.title || film.title}
+                                {film.title}
                             </div>
                             <div style={{ color: "var(--muted-text)" }}>
-                                {meta.releaseYear ? `(${meta.releaseYear})` : ""}
+                                {film.year}
                             </div>
                             <div style={{ display: "flex", gap: "var(--space-sm)", alignItems: "center", justifyContent: "center" }}>
                                 <p style={{ fontWeight: "bold", margin: "0px" }}>{film.rating}</p>
