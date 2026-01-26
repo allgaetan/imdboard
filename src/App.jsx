@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from 'react'
-import { imdbCSVParser } from './imdbCSVParser.js'
-import { fetchFilmMetadata } from "./tmdb";
+import { imdbCSVParser } from './imdbCSVParser'
+import { fetchFilmMetadata } from "./tmdb"
 
 import Landing from './Landing/Landing.jsx'
 import Loading from './Landing/Loading.jsx'

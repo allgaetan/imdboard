@@ -1,5 +1,73 @@
 @import "../variables.css";
 
+/* Board */
+.board {
+    width: 100%;
+    color: var(--text);
+}
+.board-header {
+    align-items: center;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+}
+.board-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Timeframe selector */
+.dropdown {
+    position: relative;
+    width: max-content;
+}
+.dropdown-trigger {
+    background: var(--muted-surface);
+    color: var(--text);
+    border: 1px solid #333;
+    padding: 8px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    transition: 0.1s;
+}
+.dropdown-trigger:hover {
+    border-color: var(--surface);
+}
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0px);
+    left: 0;
+    background: var(--bg);
+    border: 1px solid #333;
+    border-radius: 4px;
+    list-style: none;
+    padding: 4px 0;
+    z-index: 10;
+}
+.dropdown-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.dropdown-menu li:hover {
+    background: var(--muted-text);
+    color: var(--muted-surface);
+    transition: 0.1s;
+}
+
+/* Component container */
+.component-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: var(--space-sm);
+}  
+
+/* Cards */
 .card {
     background-color: var(--muted-surface);
     border-radius: 8px;
@@ -32,24 +100,7 @@
     background-color: var(--bg);
 }
 
-.board {
-    width: 100%;
-    color: var(--text);
-}
-.board-header {
-    align-items: center;
-    align-self: center;
-    display: flex;
-    justify-content: space-between;
-}
-
-.component-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: var(--space-sm);
-}  
-
+/* Overview */
 .overview {
     grid-column-start: 1;
     grid-column-end: 4;
@@ -99,6 +150,7 @@
     align-items: center;
 }
 
+/* Ratings distribution */
 .ratings-distribution {
     grid-column-start: 4;
     grid-column-end: 7;
@@ -107,6 +159,7 @@
     max-height: fit-content;
 }
 
+/* Genres distribution */
 .genres-distribution {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -115,6 +168,7 @@
     max-height: fit-content;
 }
 
+/* Directors distribution */
 .directors-distribution {
     grid-column-start: 3;
     grid-column-end: 5;
@@ -123,6 +177,7 @@
     max-height: fit-content;
 }
 
+/* Decades distribution */
 .decades-distribution {
     grid-column-start: 5;
     grid-column-end: 7;
@@ -131,6 +186,7 @@
     max-height: fit-content;
 }
 
+/* Top ratings */
 .top-ratings {
     grid-column-start: 7;
     grid-column-end: 9;
@@ -182,17 +238,38 @@
     padding-left: 5px;
     border-top: solid 1px var(--muted-text);
     transition: 0.1s;
+    display: flex;
+    justify-content: space-between;
 }
 .lines-display .line:hover {
     background-color: var(--muted-accent);
 }
 
+/* Last watched */
 .last-watched {
     grid-column-start: 1;
     grid-column-end: 7;
     grid-row-start: 4;
     grid-row-end: 5;
     max-height: fit-content;
+}
+.last-watched-header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.last-watched-header .title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+.last-watched-header .selector {
+    display: flex;
+    align-items: center;
+}
+.last-watched-header .selector p {
+    color: var(--text);
 }
 .watch-history {
     display: flex;
@@ -224,46 +301,4 @@
 }
 .watch-history::-webkit-scrollbar-thumb:hover {
     background: var(--accent-2);
-}
-
-.dropdown {
-    position: relative;
-    width: max-content;
-}
-.dropdown-trigger {
-    background: var(--muted-surface);
-    color: var(--text);
-    border: 1px solid #333;
-    padding: 8px 12px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 4px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    transition: 0.1s;
-}
-.dropdown-trigger:hover {
-    border-color: var(--surface);
-}
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 0px);
-    left: 0;
-    background: var(--bg);
-    border: 1px solid #333;
-    border-radius: 4px;
-    list-style: none;
-    padding: 4px 0;
-    z-index: 10;
-}
-.dropdown-menu li {
-    padding: 8px 12px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-.dropdown-menu li:hover {
-    background: var(--muted-text);
-    color: var(--muted-surface);
-    transition: 0.1s;
 }

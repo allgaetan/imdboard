@@ -1,7 +1,8 @@
+import './Board.css'
 import { useState } from 'react'
+
 import ComponentContainer from './ComponentContainer.jsx'
 import TimeframeSelector from './TimeframeSelector.jsx'
-import './Board.css'
 
 export default function Board({ data, metadata }) {
     const [timeframe, setTimeframe] = useState('all')

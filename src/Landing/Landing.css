@@ -1,5 +1,6 @@
 @import "../variables.css";
 
+/* Main landing display */
 .landing {
     background-color: var(--muted-surface);
     border-radius: 8px;
@@ -38,7 +39,15 @@
     color: var(--muted-text);
     font-size: 0.95rem;
 }
+.landing .drop-zone:hover > .upload-icon { 
+    color: var(--accent); 
+}
+.landing .drop-zone .upload-icon { 
+    color: var(--muted-text); 
+    transition: 0.2s;
+}
 
+/* Loading display */
 .loading {
     background-color: var(--muted-surface);
     border-radius: 8px;
@@ -68,12 +77,4 @@
     color: var(--muted-text);
     font-size: 0.95rem;
     font-style: italic;
-}
-
-.landing .drop-zone:hover > .upload-icon { 
-    color: var(--accent); 
-}
-.landing .drop-zone .upload-icon { 
-    color: var(--muted-text); 
-    transition: 0.2s;
 }

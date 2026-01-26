@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { getGenreDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { MdOutlineTheaterComedy } from "react-icons/md";
 import { IconContext } from "react-icons";
-import { useState } from "react";
 
 export default function GenresDistribution({ data }) {
     const dist = getGenreDistribution(data)
@@ -15,7 +15,6 @@ export default function GenresDistribution({ data }) {
     const CustomTooltip = ({ active, payload, label }) => {
         if (!active || !payload || !payload.length) return null
         const count = payload[0].value
-
         return (
             <div
                 style={{

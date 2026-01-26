@@ -1,16 +1,12 @@
+import { getAverageRating, getNumberOfFilmsWatched, getTotalTimeWatchedInHours} from "./util"
 import { GrOverview } from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { IoStar } from "react-icons/io5";
-import { getAverageRating, 
-    getNumberOfFilmsWatched,
-    getTotalTimeWatchedInHours,
-    getLongestStreak} from "./util.js"
 
 export default function Overview({ data }) {
     const numberOfFilmsWatched = getNumberOfFilmsWatched(data)
     const totalTimeWatched = getTotalTimeWatchedInHours(data)
     const averageRating = getAverageRating(data)
-    const longestStreak = getLongestStreak(data)
 
     return (
         <div className="card overview">
@@ -40,7 +36,6 @@ export default function Overview({ data }) {
                     <p>Average rating</p>
                 </div>
             </div>
-            
         </div>
     )
 }

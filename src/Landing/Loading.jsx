@@ -1,4 +1,3 @@
-import "./Landing.css"
 import { SiThemoviedatabase } from "react-icons/si";
 import { IconContext } from "react-icons";
 

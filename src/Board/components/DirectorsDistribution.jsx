@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { getDirectorDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { GiDirectorChair } from "react-icons/gi";
 import { IconContext } from "react-icons";
-import { useState } from "react";
 
 export default function DirectorsDistribution({ data }) {
     const dist = getDirectorDistribution(data)
@@ -15,7 +15,6 @@ export default function DirectorsDistribution({ data }) {
     const CustomTooltip = ({ active, payload, label }) => {
         if (!active || !payload || !payload.length) return null
         const count = payload[0].value
-
         return (
             <div
                 style={{

@@ -1,17 +1,16 @@
+import { useState } from "react";
+import { getRatingDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { IoStatsChart } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { IoStar } from "react-icons/io5";
-import { getRatingDistribution } from "./util";
-import { useState } from "react";
 
 export default function RatingsDistribution({ data }) {
     const distribution = getRatingDistribution(data)
-
+    
     const CustomTooltip = ({ active, payload, label }) => {
         if (!active || !payload || !payload.length) return null
         const count = payload[0].value
-
         return (
             <div
                 style={{

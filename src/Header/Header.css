@@ -57,25 +57,37 @@
     transition: 150ms;
     border-radius: 2px;
 }
-
 .tab:hover {
     color: var(--muted-text);
     border-bottom-color: var(--muted-text);
 }
-
 .tab:focus {
     outline: none;
     box-shadow: none;
 }
-
 .tab.active {
     border-bottom-color: var(--accent);
     font-weight: 600;
     color: var(--text);
 }
 
-a { color: var(--text); transition: 150ms; }
-a:visited { text-decoration: none; color: var(--text); }
-a:hover { text-decoration: none; color: var(--muted-text); }
-a:focus { text-decoration: none; color: var(--text); }
-a:hover, a:active { text-decoration: none; color: var(--muted-text); }
+a { 
+    color: var(--text); 
+    transition: 150ms; 
+}
+a:visited { 
+    text-decoration: none; 
+    color: var(--text); 
+}
+a:hover { 
+    text-decoration: none; 
+    color: var(--muted-text); 
+}
+a:focus { 
+    text-decoration: none; 
+    color: var(--text); 
+}
+a:hover, a:active { 
+    text-decoration: none; 
+    color: var(--muted-text); 
+}

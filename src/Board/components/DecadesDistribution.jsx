@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { getDecadeDistribution } from "./util";
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import { CiCalendarDate } from "react-icons/ci";
 import { IconContext } from "react-icons";
-import { useState } from "react";
 
 export default function DecadesDistribution({ data }) {
     const distribution = getDecadeDistribution(data)
@@ -12,7 +12,6 @@ export default function DecadesDistribution({ data }) {
     const CustomTooltip = ({ active, payload, label }) => {
         if (!active || !payload || !payload.length) return null
         const count = payload[0].value
-
         return (
             <div
                 style={{

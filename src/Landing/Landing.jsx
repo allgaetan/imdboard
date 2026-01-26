@@ -1,4 +1,5 @@
 import "./Landing.css"
+
 import DropZone from "./DropZone.jsx"
 
 export default function Landing({ onDataLoaded }) {

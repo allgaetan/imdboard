@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getLastWatched, dateFormatter } from "./util";
 import { FaHistory } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -31,15 +31,15 @@ export default function LastWatched({ data, metadata }) {
 
     return (
         <div className="card last-watched">
-            <div className="card-header" style={{ display: "flex", justifyContent: "space-between", paddingLeft: "10px", paddingRight: "10px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-md)" }}>
+            <div className="card-header last-watched-header">
+                <div className="title">
                     <IconContext.Provider value={{ style: {fontSize: "25"} }}>
                         <FaHistory />
                     </IconContext.Provider>
                     <h2>Recently rated</h2>
                 </div>
-                <div style={{ display: "flex", alignItems: "center"}}>
-                    <p style={{ color: "var(--text)" }}>Show</p>
+                <div className="selector">
+                    <p>Show</p>
                     <select id="size-selector" defaultValue="5" onChange={handleSizeChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>

@@ -1,13 +1,12 @@
-import { getHighestRatedFilms, getDirectorDistribution, getGenreDistribution } from "./util";
 import { useState, useEffect } from "react";
+import { fetchPersonPicture } from "../../tmdb";
+import { getHighestRatedFilms, getDirectorDistribution, getGenreDistribution } from "./util";
 import { IoStar } from "react-icons/io5";
 import { GiStarsStack } from "react-icons/gi";
 import { IconContext } from "react-icons";
 import { FaFilm } from "react-icons/fa6";
 import { GiDirectorChair } from "react-icons/gi";
 import { MdOutlineTheaterComedy } from "react-icons/md";
-import { fetchPersonPicture } from "../../tmdb";
-import { CgComedyCentral } from "react-icons/cg";
 
 export default function TopRatings({ data, metadata }) {
     const apiKey = import.meta.env.VITE_API_KEY
@@ -69,7 +68,7 @@ export default function TopRatings({ data, metadata }) {
         setGenres(pairs)
     }
     /**
-     * 
+     * useEffect()
      */
     useEffect(() => {
         getTopFilmsMetadata(metadata)
@@ -85,7 +84,6 @@ export default function TopRatings({ data, metadata }) {
                 </IconContext.Provider>
                 <h2>Top ratings</h2>
             </div>
-
             <div className="top-ratings-header">
                 <IconContext.Provider value={{ style: {fontSize: "20"} }}>
                     <FaFilm />
@@ -123,7 +121,7 @@ export default function TopRatings({ data, metadata }) {
                     {filmMeta.map(({ film }, idx) => (
                         <div>
                             {(idx > TOP_FILM_DISPLAY - 1) ? (
-                                <div className="line" style={{ display: "flex", justifyContent: "space-between" }}>
+                                <div className="line">
                                     <div>
                                         <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{idx + 1}. {film.title}</p>
                                         <div style={{ color: "var(--muted-text)", textAlign: "left" }}>{film.directors} ({film.year})</div>
@@ -176,7 +174,7 @@ export default function TopRatings({ data, metadata }) {
                     {directorPics.map(({ name }, idx) => (
                         <div>
                             {(idx > TOP_DIRECTOR_DISPLAY - 1) ? (
-                                <div className="line" style={{ display: "flex", justifyContent: "space-between" }}>
+                                <div className="line">
                                     <div>
                                         <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{idx + 1}. {name}</p>
                                         <div style={{ color: "var(--muted-text)", textAlign: "left" }}>{dirDist.count[name]} film(s) watched</div>
@@ -203,7 +201,7 @@ export default function TopRatings({ data, metadata }) {
             ) : (
                 <div className="lines-display">
                     {genres.map(({ name, rating }, idx) => (<>
-                        <div className="line" key={name} style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div className="line" key={name}>
                             <div>
                                 <p style={{ fontWeight: "bold", margin: "0px", textAlign: "left" }}>{idx + 1}. {name}</p>
                                 <div style={{ color: "var(--muted-text)" }}>{genresDist.count[name]} film(s) watched</div>
