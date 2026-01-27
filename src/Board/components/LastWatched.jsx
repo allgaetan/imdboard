@@ -4,30 +4,24 @@ import { FaHistory } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { IoStar } from "react-icons/io5";
 
-export default function LastWatched({ data, metadata }) {
-    const [items, setItems] = useState([])
+export default function LastWatched({ data }) {
+    const [films, setFilms] = useState([])
     const [size, setSize] = useState(5)
 
     const handleSizeChange = () => {
         const size = document.getElementById("size-selector").value
         setSize(size)
-        getLastWatchedMetadata(metadata, size)
+        getLastWatchedFilms(data, size)
     }   
 
-    const getLastWatchedMetadata = (metadata, size) => {
-        const films = getLastWatched(data, size);
-        const pairs = []
-        for (const film of films) {
-            const id = film.const
-            const meta = metadata[id]
-            pairs.push({ film, meta })
-        }
-        setItems(pairs)
+    const getLastWatchedFilms = (data, size) => {
+        const lastWatchedFilms = getLastWatched(data, size)
+        setFilms(lastWatchedFilms)
     }
 
     useEffect(() => {
-        getLastWatchedMetadata(metadata, size, data)
-    }, [data, metadata])
+        getLastWatchedFilms(data, size)
+    }, [data])
 
     return (
         <div className="card last-watched">
@@ -47,20 +41,20 @@ export default function LastWatched({ data, metadata }) {
                     </select>
                 </div>   
             </div>
-            {!items.length ? (
-                <p>No items.</p>
+            {!films.length ? (
+                <p>No films.</p>
             ) : (
                 <div className="watch-history">
-                    {items.map(({ film, meta }) => (
-                        <div key={film.const || film.title}>
-                            {meta?.posterPath ? (
+                    {films.map((film) => (
+                        <div key={film.id || film.title}>
+                            {film?.posterPath ? (
                                 <img 
-                                    src={meta.posterPath}
-                                    alt={meta.title}
+                                    src={film.posterPath}
+                                    alt={film.title}
                                     style={{ borderRadius: "8px" }}
                                 />
                             ) : (
-                                <div>No poster</div>
+                                <div>No poster.</div>
                             )}
                             <div style={{ fontWeight: "bold" }}>
                                 {film.title}
@@ -69,7 +63,7 @@ export default function LastWatched({ data, metadata }) {
                                 {film.year}
                             </div>
                             <div style={{ display: "flex", gap: "var(--space-sm)", alignItems: "center", justifyContent: "center" }}>
-                                <p style={{ fontWeight: "bold", margin: "0px" }}>{film.rating}</p>
+                                <p style={{ fontWeight: "bold", margin: "0px" }}>{film.yourRating}</p>
                                 <IoStar color="gold"/>
                             </div>
                             <div style={{ color: "var(--muted-text)" }}>

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import ComponentContainer from './ComponentContainer.jsx'
 import TimeframeSelector from './TimeframeSelector.jsx'
 
-export default function Board({ data, metadata }) {
+export default function Board({ metadata }) {
     const [timeframe, setTimeframe] = useState('all')
     let suffix = ""
     switch (timeframe) {
@@ -29,7 +29,7 @@ export default function Board({ data, metadata }) {
                 <TimeframeSelector timeframe={timeframe} onChange={setTimeframe} />
             </div>
             <div className="board-container">
-                <ComponentContainer data={data} metadata={metadata} timeframe={timeframe} />
+                <ComponentContainer data={metadata} timeframe={timeframe} />
             </div>
         </div>
     )

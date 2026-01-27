@@ -1,0 +1,156 @@
+@import "../variables.css";
+
+/* Main landing display */
+.landing {
+    background-color: var(--muted-surface);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin: var(--space-sm);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    box-shadow: 0 0 20px 20px var(--bg);
+}
+.landing .app-name {
+    color: var(--accent-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+}
+.landing .app-name h1 {
+    text-align: left;
+    margin: -10px;
+    padding: 0px;
+}
+.landing .drop-zone {
+    border: 2px dashed rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: rgba(0, 0, 0, 0.252);
+    color: var(--muted-text);
+    gap: var(--space-md);
+}
+.landing .drop-zone:hover {
+    background: rgba(255,255,255,0.02);
+    border-color: var(--accent-2);
+    transform: translateY(0px);
+}
+.landing .drop-zone:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(30,144,255,0.08);
+}
+.landing .drop-zone p {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.95rem;
+}
+.landing .drop-zone:hover > .upload-icon { 
+    color: var(--accent-2); 
+}
+.landing .drop-zone .upload-icon { 
+    color: var(--muted-text); 
+    transition: 0.2s;
+}
+.landing .instructions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+.landing .instructions .imdb {
+    margin-right: var(--space-sm);
+    padding: var(--space-md);
+    border-radius: 8px;
+    border: solid 1px rgba(255,255,255,0.06);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.508);
+    transition: 0.3s ease;
+    color: var(--muted-text);
+    background-color: rgba(255, 217, 0, 0.034);
+}
+.landing .instructions .imdb:hover {
+    color: var(--text);
+    cursor: pointer;
+}
+.landing .instructions .letterboxd {
+    margin-left: var(--space-sm);
+    padding: var(--space-md);
+    border-radius: 8px;
+    border: solid 1px rgba(255,255,255,0.06);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.508);
+    transition: 0.3s ease;
+    color: var(--muted-text);
+    background-color: #32d58319;
+}
+.landing .instructions .letterboxd:hover {
+    color: var(--text);
+    cursor: pointer;
+}
+a { 
+    color: var(--text); 
+    transition: 150ms; 
+    text-decoration: none;
+}
+a:visited { 
+    text-decoration: none; 
+    color: var(--text); 
+}
+a:hover { 
+    text-decoration: none; 
+    color: var(--muted-text); 
+}
+a:focus { 
+    text-decoration: none; 
+    color: var(--text); 
+}
+a:hover, a:active { 
+    text-decoration: none; 
+    color: var(--muted-text); 
+}
+.instructions p {
+    text-align: left;
+}
+.github {
+    margin: var(--space-md) var(--space-md) 0 var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Loading display */
+.loading {
+    background-color: var(--muted-surface);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin: var(--space-sm);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+}
+.loading .drop-zone {
+    border: 2px dashed rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    cursor: default;
+    color: var(--muted-text);
+    gap: var(--space-md);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+    background-color: rgba(0, 0, 0, 0.252);
+    transform: translateY(0px);
+}
+.loading .drop-zone p {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    font-style: italic;
+}

@@ -12,7 +12,7 @@ export const getTotalTimeWatchedInHours = (data) => {
 
 export const getAverageRating = (data) => {
     if (data.length === 0) return 0
-    const totalRating = data.reduce((total, film) => total + parseFloat(film.rating || 0), 0)
+    const totalRating = data.reduce((total, film) => total + parseFloat(film.yourRating || 0), 0)
     return (totalRating / data.length).toFixed(2)
 }
 
@@ -26,7 +26,7 @@ export const getRatingDistribution = (data) => {
         distribution[i] = 0
     }
     data.forEach((film) => {
-        const rating = film.rating;
+        const rating = film.yourRating;
         if (rating && distribution[rating] !== undefined) {
             distribution[rating] += 1
         }
@@ -38,8 +38,7 @@ export const getGenreDistribution = (data) => {
     const distribution = {}
     data.forEach((film) => {
         const genres = film.genres;
-        const genresArray = genres.split(", ");
-        genresArray.forEach((genre) => {
+        genres.forEach((genre) => {
             if (genre && distribution[genre] === undefined) {
                 distribution[genre] =
                     {
@@ -51,11 +50,10 @@ export const getGenreDistribution = (data) => {
     })
     data.forEach((film) => {
         const genres = film.genres;
-        const genresArray = genres.split(", ");
-        genresArray.forEach((genre) => {
+        genres.forEach((genre) => {
             if (genre) {
                 distribution[genre].count += 1
-                distribution[genre].rating += parseInt(film.rating || 0, 10)
+                distribution[genre].rating += parseInt(film.yourRating || 0, 10)
             }
         })  
     })
@@ -85,27 +83,21 @@ export const getGenreDistribution = (data) => {
 export const getDirectorDistribution = (data) => {
     const distribution = {}
     data.forEach((film) => {
-        const directors = film.directors;
-        const directorsArray = directors.split(",");
-        directorsArray.forEach((director) => {
-            if (director && distribution[director] === undefined) {
-                distribution[director] =
-                    {
-                        "count": 0,
-                        "rating": 0
-                    }
-            }
-        })   
+        const director = film.director;
+        if (director && distribution[director] === undefined) {
+            distribution[director] =
+                {
+                    "count": 0,
+                    "rating": 0
+                }
+        }
     })
     data.forEach((film) => {
-        const directors = film.directors;
-        const directorsArray = directors.split(",");
-        directorsArray.forEach((director) => {
-            if (director) {
-                distribution[director].count += 1
-                distribution[director].rating += parseInt(film.rating || 0, 10)
-            }
-        })  
+        const director = film.director;
+        if (director) {
+            distribution[director].count += 1
+            distribution[director].rating += parseInt(film.yourRating || 0, 10)
+        }
     })
     const countDist = {}
     const ratingDist = {}
@@ -169,7 +161,7 @@ export const dateFormatter = (dateString) => {
 }
 
 export const sortFilmsByRatings = (data) => {
-    return [...data].sort((a, b) => Number(b.rating) - Number(a.rating))
+    return [...data].sort((a, b) => Number(b.yourRating) - Number(a.yourRating))
 }
 
 export const getHighestRatedFilms = (data, size) => {

@@ -1,54 +1,57 @@
 import './App.css'
-import { useState } from 'react'
-import { imdbCSVParser } from './imdbCSVParser'
+import { useEffect, useState } from 'react'
+import { superParser } from './dataParsing'
 import { fetchFilmMetadata } from "./tmdb"
 
-import Landing from './Landing/Landing.jsx'
-import Loading from './Landing/Loading.jsx'
+import Upload from './Upload/Upload.jsx'
+import Loading from './Upload/Loading.jsx'
 import Header from './Header/Header.jsx'
 import Board from './Board/Board.jsx'
 
 export default function App() {
-    const apiKey = import.meta.env.VITE_API_KEY
     const [data, setData] = useState(null)
     const [metadata, setMetadata] = useState(null)
     const [tab, setTab] = useState('board')
+    const [progress, setProgress] = useState(0)
+    const [source, setSource] = useState(null)
 
-    const handleDataLoaded = (csvContent) => {
-        const ratings = imdbCSVParser(csvContent)
-        if (ratings) {
-            setData(ratings)
-            loadMetadata(ratings)
-        } else {
-            alert("No ratings found.")
-        }
+    const handleDataLoaded = async (file) => {
+        const parsed = await superParser(file)
+        const ratings = parsed.ratings
+        const source = parsed.source
+        setSource(source)
+        setData(ratings)
+        loadMetadata(ratings, source)
     }
 
-    const loadMetadata = async (data) => {
-        const metadata = {}
-        for (const film of data) {
-            const id = film.const
-            const meta = await fetchFilmMetadata(id, apiKey)
-            if (meta) metadata[id] = meta
+    const loadMetadata = async (ratings, source) => {
+        const length = ratings.length
+        var idx = 0
+        const metadata = []
+        for (const rating of ratings) {
+            const meta = await fetchFilmMetadata(rating, source)
+            if (meta) metadata.push(meta)
+            idx += 1
+            setProgress((idx / length))
         }
         setMetadata(metadata)
     }
 
     return (
         <div className="app noise">
-            {(!data || !metadata) ? (
+            {!(data && metadata) ? (
                 <main className="main-content">
-                    {(data ? (
-                        <Loading />
-                    ) : (
-                        <Landing onDataLoaded={handleDataLoaded} />
-                    ))}
+                    {(data ? (<>
+                        <Loading source={source} progress={progress} />
+                    </>) : (<>
+                        <Upload onDataLoaded={handleDataLoaded} />
+                    </>))}
                 </main>  
             ) : (
                 <main className="main-content">
-                    <Header tab={tab} setTab={setTab} landing={!data} setData={setData}/>
+                    <Header tab={tab} setTab={setTab} upload={!data} setData={setData} setMetadata={setMetadata} />
                     {tab === 'board' ? (
-                        <Board data={data} metadata={metadata} />
+                        <Board metadata={metadata} />
                     ) : (
                         <div>Reports not available yet.</div>
                     )}
