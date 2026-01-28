@@ -1,4 +1,4 @@
-import "./Landing.css"
+import "./Upload.css"
 import DropZone from "./DropZone.jsx"
 import { FaImdb } from "react-icons/fa";
 import { FaSquareLetterboxd } from "react-icons/fa6";
@@ -22,8 +22,8 @@ export default function Upload({ onDataLoaded }) {
                     </span>
                 </span>
                 <span className="desc" style={{ fontSize: "20px" }}>
-                    <p>Your movie stats at all time, in an interactive and comprehensive dashboard</p>
-                    <p style={{ color: "var(--muted-text)" }}>Coming soon: exclusive reports </p>
+                    <p>Your personal movie stats at all time, in an interactive and comprehensive dashboard</p>
+                    <p style={{ color: "var(--muted-text)" }}>Coming soon: exclusive weekly, monthly and yearly reports </p>
                 </span>
                 <div className="instructions">
                     <a className="imdb" href="https://www.imdb.com/" target="_blank">

@@ -136,6 +136,7 @@ a:hover, a:active {
     text-align: center;
     width: 50%;
     margin-left: 25%;
+    box-shadow: 0 0 20px 20px var(--bg);
 }
 .loading .drop-zone {
     border: 2px dashed rgba(255,255,255,0.08);

@@ -11,7 +11,7 @@ export default function Header({ tab, setTab, upload = true, setData, setMetadat
                     <IconContext.Provider value={{ style: { fontSize: "20"} }}>
                         <FiUpload />
                     </IconContext.Provider>
-                    <h1>Upload different ratings</h1>
+                    <h1>Upload data</h1>
                 </div>
                 <nav className="header-center" role="tablist" aria-label="Main tabs">
                     <button
