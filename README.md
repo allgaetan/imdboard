@@ -1,16 +1,36 @@
-# React + Vite
+# IMDashBoard: The Interactive Movie DashBoard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Your personal movie stats at all time, in an interactive and comprehensive dashboard
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was inspired by [Last.fm](https://www.last.fm). It aims at designing an interactive movie tracking experience available at all times, akin to what Last.fm offers for music.
+It is a personal project and is not in any way affiliated to IMDb, Letterboxd, or TMDB.
 
-## React Compiler
+## Existing features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Import your data from either IMDb or Letterboxd
+- Your data is parsed locally and enriched with TMDB
+- Frame the visualized data to a time window (last 7, 30, 90, 180, 365 days or all time)
+- Interactive dashboard organized in cards:
+    - Overview stats (number of films watched, total watch time in hours, average rating)
+    - Ratings distribution
+    - Most watched genres
+    - Most watched directors
+    - Number of films watched from each decade
+    - List of the recently rated films (display 5, 10 or 25 most recent)
+    - Top ratings: top 10 highest rated films, directors and genres
 
-## Expanding the ESLint configuration
+## Future features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Additional information around the dashboard:
+    - Overview stats:
+    - Ratings distribution: click on a rating to see every film with this rating
+    - Most watched genres: click on a genre to see every film from the genre + show more than top 10
+    - Most watched directors: click on a director to see every film from the director + show more than top 10
+    - Number of films watched from each decade: click on a decade to see every film from the decade + extend the decade graph to a yearly graph
+    - List of the recently rated films (display 5, 10 or 25 most recent)
+    - Top ratings: top 10 highest rated films, directors and genres: extend the top 10 + click on a director to see every film from them + click on a genre to see every film from it
+- Weekly, monthly and yearly reports with comparison to the previous corresponding time period
+- All films view: grid/list with all films with custom filters and sorting
+- Use IMDb or Letterboxd username/id directly instead of file upload
